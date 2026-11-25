@@ -1,0 +1,45 @@
+@import "tailwindcss";
+ 
+@theme {
+  /* --- Paleta inspirada en el bordado otomí y el paisaje de Villa del Carbón --- */
+  --color-manta: #fbf6ec;          /* Fondo: tela de manta cruda donde se borda */
+  --color-manta-oscura: #f1e7d3;
+  --color-bosque: #2f5d3a;         /* Verde de los bosques de pino y oyamel */
+  --color-bosque-oscuro: #1f3f27;
+  --color-barro: #8b4a2b;          /* Tierra y barro de las casas tradicionales */
+  --color-maiz: #e9b33c;           /* Amarillo del maíz */
+  --color-grana: #b8336a;          /* Rosa mexicano / grana cochinilla del bordado */
+  --color-turquesa: #1f8a8a;       /* Turquesa del hilo de bordado */
+  --color-carbon: #2b2420;         /* Texto principal (casi negro, cálido) */
+ 
+  /* --- Tipografías --- */
+  --font-titulo: "Fraunces", Georgia, serif;
+  --font-texto: "Nunito", system-ui, sans-serif;
+}
+ 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-manta text-carbon font-texto antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-titulo text-bosque-oscuro;
+  }
+  /* Foco visible para quien navega con teclado (accesibilidad WCAG) */
+  :focus-visible {
+    outline: 3px solid var(--color-maiz);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+ 
+/* Si la persona pidió "reducir movimiento" en su sistema, quitamos animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
